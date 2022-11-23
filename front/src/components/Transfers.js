@@ -30,11 +30,11 @@ const Transfers = (props) => {
      }
     
     return(
-       <div>
+       <div className='shown text-left'>
         <h1>Transfer</h1>
           <form>
              From: {locationState.address} 
-              <label>To: 0x3jkfru83nj4lj98fn4i98snh498hv98483hnh9u8v48</label>
+              <label><b>To:</b> 0x3jkfru83nj4lj98fn4i98snh498hv98483hnh9u8v48</label>
               <label>Amount: <input type="number" value={num} onChange={e=>setNum(e.target.value)}/>
              </label>
           </form>

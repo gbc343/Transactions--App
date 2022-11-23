@@ -1,13 +1,11 @@
-//var cors = require('cors');
+var cors = require('cors');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-//const socketio = require('socket.io');
+
 const express = require('express');
-//const http = require('http');
+
 const app = express();
-//const server = http.createServer(app);
-//const io = socketio(server);
-//const moment = require('moment');
+
 const transactions = require('./modules/transactions')
 const accounts = require('./modules/accounts')
 
@@ -22,15 +20,18 @@ mongoose
    error => { console.log("Mongoose could not connected to database: " + error); }
  );
 
+ app.use(cors());
+
+
 app.get('/account/addresses', (req, res) => {
     var list = accounts.getAddresses();
     
-    res.json(list);
+    res.send(list);
     console.log('Sent list of items');
 });
 
-app.get('/account/balance/', (req, res) => {
-     var account = req.params.accounts;
+app.get('/account/balance', (req, res) => {
+     var account = req.query.accounts;
      var balance = accounts.getBalance(account);
      res.send(balance);
      
